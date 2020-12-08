@@ -19,12 +19,9 @@ headers = {'Accept': 'application/vnd.github.luke-cage-preview+json','Authorizat
 print(gh_org, access_token)
 
 def ghAPI( endpoint, paging=True, verbose=True ):
-    #print( endpoint )
     error = 0
     page = 1
     run = True
-    #headers = {'Accept': 'application/vnd.github.luke-cage-preview+json','Authorization': 'Token {0}'.format(access_token)}
-    #headers = {"Authorization":"token {0}".format(access_token)}
     datas = []
 
     while run:
@@ -75,6 +72,7 @@ for repo in r:
         j_data.update(REPO_NAME =repo_name)
         html_data = json2html.convert(json = j_data) + '<br>'
         f.write(html_data + '\n')
+    break
 print(d)
 f.close()
 webbrowser.open('file://' + os.path.realpath(filename))
