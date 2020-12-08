@@ -4,13 +4,19 @@ import requests
 from json2html import *
 import os
 import webbrowser
+import configparser
+
+config = configparser.ConfigParser()
+config.read('init.properties')
+
 GITHUB_API_URL = 'https://api.github.com'
-gh_org = ''
+gh_org = config.get("PropSection", "org_name")
 branch = 'main'
 endpoint = '/orgs/'+gh_org+'/repos'
 u = GITHUB_API_URL+endpoint
-access_token = ''
+access_token = config.get("PropSection", "pat_token")
 headers = {'Accept': 'application/vnd.github.luke-cage-preview+json','Authorization': 'Token {0}'.format(access_token)}
+print(gh_org, access_token)
 
 def ghAPI( endpoint, paging=True, verbose=True ):
     #print( endpoint )
